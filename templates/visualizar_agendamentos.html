@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizar Agendamentos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Agendamentos</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>Email</th>
+                    <th>Data</th>
+                    <th>Horário</th>
+                    <th>Serviço</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for agendamento in agendamentos %}
+                <tr>
+                    <td>{{ agendamento.id }}</td>
+                    <td>{{ agendamento.nome }}</td>
+                    <td>{{ agendamento.telefone }}</td>
+                    <td>{{ agendamento.email }}</td>
+                    <td>{{ agendamento.data }}</td>
+                    <td>{{ agendamento.horario }}</td>
+                    <td>{{ agendamento.servico }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Scripts do Bootstrap -->
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>
