@@ -4,12 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visualizar Agendamentos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
 </head>
 <body>
+    <header>
+        <!-- Header Code -->
+        <div class="header-area header-transparent pt-20">
+            <div class="main-header header-sticky">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <!-- Logo -->
+                        <div class="col-xl-2 col-lg-2 col-md-1">
+                            <div class="logo">
+                                <a href="/"><img src="{{ url_for('static', filename='img/logo/logo.png') }}" alt="Logo"></a>
+                            </div>
+                        </div>
+                        <div class="col-xl-10 col-lg-10 col-md-10">
+                            <div class="menu-main d-flex align-items-center justify-content-end">
+                                <!-- Main-menu -->
+                                <div class="main-menu f-right d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">
+                                            <li class="active"><a href="/">Inicio</a></li>
+                                            <li><a href="{{ url_for('admin_logout') }}">Logout</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <div class="header-right-btn f-right d-none d-lg-block ml-30"></div>
+                            </div>
+                        </div>   
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
     <div class="container mt-5">
-        <h1 class="mb-4">Agendamentos</h1>
-        <table class="table table-striped">
+        <h1>Agendamentos</h1>
+        <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -23,21 +59,21 @@
             </thead>
             <tbody>
                 {% for agendamento in agendamentos %}
-                <tr>
-                    <td>{{ agendamento.id }}</td>
-                    <td>{{ agendamento.nome }}</td>
-                    <td>{{ agendamento.telefone }}</td>
-                    <td>{{ agendamento.email }}</td>
-                    <td>{{ agendamento.data }}</td>
-                    <td>{{ agendamento.horario }}</td>
-                    <td>{{ agendamento.servico }}</td>
-                </tr>
+                    <tr>
+                        <td>{{ agendamento.id }}</td>
+                        <td>{{ agendamento.nome }}</td>
+                        <td>{{ agendamento.telefone }}</td>
+                        <td>{{ agendamento.email }}</td>
+                        <td>{{ agendamento.data }}</td>
+                        <td>{{ agendamento.horario }}</td>
+                        <td>{{ agendamento.servico }}</td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
-
-    <!-- Scripts do Bootstrap -->
-    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <!-- JS here -->
+    <script src="{{ url_for('static', filename='js/vendor/jquery-1.12.4.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 </body>
 </html>

@@ -10,16 +10,13 @@
 </head>
 <body>
     <!-- Exibir mensagens flash -->
-    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% with messages = get_flashed_messages() %}
         {% if messages %}
-            <div class="container mt-4">
-                {% for category, message in messages %}
-                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                        {{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                {% endfor %}
-            </div>
+            <script>
+                window.onload = function() {
+                    alert("{{ messages[0] }}");
+                };
+            </script>
         {% endif %}
     {% endwith %}
 
@@ -42,9 +39,14 @@
             <label for="data" class="form-label">Data:</label>
             <input type="date" class="form-control" id="data" name="data" required>
         </div>
-        <div class="mb-3">
-            <label for="horario" class="form-label">Horário:</label>
-            <input type="time" class="form-control" id="horario" name="horario" required>
+        <label for="horario">Horário:</label>
+        <select id="horario" name="horario" required>
+            {% for hour in range(7, 19) %}
+                <option value="{{ '{:02d}:00'.format(hour) }}" {% if (request.args.get('data'), '{:02d}:00'.format(hour)) in horarios_agendados %}disabled{% endif %}>
+                    {{ '{:02d}:00'.format(hour) }}
+                </option>
+            {% endfor %}
+        </select>
         </div>
         <div class="mb-3">
             <label for="servico" class="form-label">Serviço:</label>
